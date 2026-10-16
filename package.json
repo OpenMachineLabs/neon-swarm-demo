@@ -1,0 +1,31 @@
+{
+  "name": "neon-swarm-demo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "NEON SWARM \u2014 a 60-second neon survival arcade game",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenMachineLabs/neon-swarm-demo.git"
+  },
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm test && npm run build",
+    "format": "prettier --write src tests index.html package.json tsconfig.json .github/workflows/ci.yml docs",
+    "format:check": "prettier --check src tests index.html package.json tsconfig.json .github/workflows/ci.yml docs"
+  },
+  "devDependencies": {
+    "prettier": "3.9.10",
+    "typescript": "7.0.2",
+    "vite": "8.3.4",
+    "vitest": "5.0.5"
+  }
+}

@@ -20,3 +20,8 @@ pnpm-debug.log*
 .DS_Store
 .idea/
 .vscode/
+
+# Local demonstration evidence and browser artifacts
+.demo/
+test-results/
+playwright-report/
