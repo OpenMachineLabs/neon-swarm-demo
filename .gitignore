@@ -1,0 +1,22 @@
+# Dependencies and build artifacts
+node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Package manager and tooling logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.example
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
