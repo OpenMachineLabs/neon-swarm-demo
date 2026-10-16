@@ -4,13 +4,13 @@
 
 [Open Machine](https://github.com/OpenMachineLabs/openmachine) connects AI-assisted workflows to real development environments and tools. This public repository is the starting point for a recorded coding challenge: turn one game idea into a playable, tested, reviewed, and merged project.
 
-> **Status: Starter repository.** No game code, dependencies, tests, or playable build have been added yet. Creating them is the purpose of the upcoming demo.
+> **Status: Playable implementation.** The original starter challenge is now implemented with TypeScript, Vite, and Canvas. Run it locally with the commands below. See [development and verification](docs/DEVELOPMENT.md) for architecture, controls, and test coverage.
 
 ## The Game
 
 **NEON SWARM** is a compact, top-down survival shooter with a dark neon aesthetic.
 
-The intended gameplay includes:
+The gameplay includes:
 
 - **Movement:** WASD and arrow keys.
 - **Enemies:** Waves of enemies that spawn and chase the player.
@@ -18,7 +18,7 @@ The intended gameplay includes:
 - **Feedback:** Health, score, and responsive particle effects.
 - **Game loop:** A 60-second survival goal, Game Over, and Restart.
 
-The planned stack is **TypeScript + Vite + HTML Canvas**, without external art assets.
+The stack is **TypeScript + Vite + HTML Canvas**, without external art assets, runtime dependencies, remote fonts, or a backend.
 
 ## The End-to-End Challenge
 
@@ -37,9 +37,22 @@ The recording and repository history are intended to make the workflow inspectab
 
 ## Getting Started
 
-This repository deliberately starts **without an application scaffold**. There is no `package.json`, game source, or test runner to install yet.
+Use **Node.js 24** (`nvm use`), then:
 
-The implementation, run commands, test suite, and browser verification evidence will be added as part of the recorded Open Machine demo. After that, this section can be updated with the actual installation and play instructions.
+```sh
+npm ci
+npm run dev
+```
+
+Open the local URL printed by Vite. Move with WASD/arrows or click a destination. Weapons fire automatically. Use **Space** for Nova Pulse, **P/Escape** to pause, and **R** to restart after a run. Sound is optional.
+
+```sh
+npm test          # deterministic simulation and input tests
+npm run build    # strict TypeScript check and production bundle
+npm run preview  # play the production build locally
+```
+
+The starter repository originally had no application scaffold. Its README, license, and Open Machine identity are retained as part of the recorded challenge. See [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) for implementation details and the browser verification checklist.
 
 ## About Open Machine
 
