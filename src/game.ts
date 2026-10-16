@@ -1,4 +1,4 @@
-import { clamp, distance, normalize, segmentHitsCircle } from "./math";
+import { clamp, distance, normalize, segmentCircleEntryTime } from "./math";
 import type { Vec } from "./math";
 
 export const WIDTH = 1200;
@@ -298,20 +298,32 @@ export class Game {
       bullet.x += bullet.vx * dt;
       bullet.y += bullet.vy * dt;
       bullet.life -= dt;
+      // Resolve the first surface crossing, not the first spawned enemy.
+      let hitEnemy: Enemy | undefined;
+      let hitTime = Infinity;
       for (const enemy of this.enemies) {
-        if (
-          enemy.hp <= 0 ||
-          !segmentHitsCircle(bullet.previous, bullet, enemy, enemy.radius + 3)
-        )
-          continue;
+        if (enemy.hp <= 0) continue;
+        const t = segmentCircleEntryTime(
+          bullet.previous,
+          bullet,
+          enemy,
+          enemy.radius + 3,
+        );
+        if (t !== null && t < hitTime) {
+          hitEnemy = enemy;
+          hitTime = t;
+        }
+      }
+      if (hitEnemy) {
+        bullet.x = bullet.previous.x + bullet.vx * dt * hitTime;
+        bullet.y = bullet.previous.y + bullet.vy * dt * hitTime;
         bullet.life = 0;
-        enemy.hit = 0.09;
-        if (enemy.hp === 1) this.destroy(enemy);
+        hitEnemy.hit = 0.09;
+        if (hitEnemy.hp === 1) this.destroy(hitEnemy);
         else {
-          enemy.hp--;
+          hitEnemy.hp--;
           this.burst(bullet, "#ffffff", 5, 85);
         }
-        break;
       }
     }
     for (const enemy of this.enemies) {

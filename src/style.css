@@ -298,7 +298,9 @@ canvas {
   height: 100%;
   touch-action: none;
   cursor: crosshair;
-  outline: none !important;
+}
+canvas:focus-visible {
+  outline-offset: -4px;
 }
 .overlay {
   position: absolute;
